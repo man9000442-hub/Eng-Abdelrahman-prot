@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdelrahman Tarek | Software Engineer</title>
+    <style>
+        /* ستايل الأبيض والأسود - Monochrome Glassmorphism */
+        
+         :root {
+            --bg-body: #050505;
+            /* أسود داكن جداً للخلفية */
+            --text-main: #ffffff;
+            /* أبيض ناصع للنصوص الأساسية */
+            --text-muted: #999999;
+            /* رمادي للنصوص الفرعية */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            /* شفافية خفيفة جداً */
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-hover: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.4);
+            --transition: all 0.4s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            /* إضافة شبكة خفيفة في الخلفية لتعزيز المظهر التقني */
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* التأثير الزجاجي */
+        
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+        /* Header */
+        
+        header {
+            padding: 20px 30px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 25px;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: var(--text-main);
+        }
+        /* Hero Section */
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 40px;
+            margin-top: 40px;
+        }
+        
+        .hero-content {
+            max-width: 60%;
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        /* مكان الصورة الشخصية */
+        
+        .img-placeholder {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 2px solid var(--glass-border);
+            background: var(--glass-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-main);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background: var(--text-main);
+            color: var(--bg-body);
+        }
+        /* Projects Section */
+        
+        .projects {
+            padding: 80px 0;
+        }
+        
+        .projects h3 {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            padding: 35px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            background: var(--glass-hover);
+        }
+        
+        .card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+        
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+        
+        .tags {
+            margin-bottom: 25px;
+        }
+        
+        .tags span {
+            font-size: 0.75rem;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            display: inline-block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+        
+        .card:hover .tags span {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--text-main);
+        }
+        
+        .project-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            align-self: flex-start;
+        }
+        
+        .project-link:hover {
+            border-bottom-color: var(--text-main);
+            gap: 12px;
+        }
+        /* Footer */
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        footer a:hover {
+            opacity: 0.7;
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .hero-content {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+            .img-placeholder {
+                width: 220px;
+                height: 220px;
+            }
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="glass-panel">
+            <h1>AT.</h1>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="/dashboard">Dashboard</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero glass-panel" id="about">
+            <div class="hero-content">
+                <h2>Abdelrahman<br>Tarek</h2>
+                <p>Full Stack Software Engineer & Architect</p>
+                <p style="font-size: 1rem; margin-bottom: 40px;">Specializing in Django, Flutter, and modern web technologies. I build scalable architectures, intuitive mobile applications, and sophisticated internal tools with a focus on clean code and exceptional user experience.</p>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
+
+            <!-- مكان صورتك الشخصية -->
+            <div class="img-placeholder">
+                <!-- أضف مسار صورتك هنا بدلاً من النص -->
+                <!-- <img src="your-image.jpg" alt="Abdelrahman Tarek"> -->
+                <span><img src="your-image.jpg" alt="Abdelrahman Tarek"></span>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <h3>Featured Projects</h3>
+            <div class="grid">
+
+                <!-- Project 1: WhatsApp Archive -->
+                <div class="card glass-panel">
+                    <div>
+                        <h4>WhatsApp Chat Archive</h4>
+                        <p>A professional client-side tool built to parse, search, and archive exported WhatsApp (.txt) conversations. Features advanced date filtering, user identification, and a seamless export-to-PDF functionality.</p>
+                        <div class="tags">
+                            <span>HTML5</span> <span>CSS3</span> <span>JavaScript</span> <span>html2pdf.js</span>
+                        </div>
+                    </div>
+                    <a href="https://man9000442-hub.github.io/Wa_Imoprt/" class="project-link">View Project &#8594;</a>
+                </div>
+
+                <!-- Project 2: Elbazaar -->
+                <div class="card glass-panel">
+                    <div>
+                        <h4>market place</h4>
+                        <p>A multi-store E-commerce platform. Features an advanced merchant dashboard, secure payment integrations (Paymob & Fawaterk), and a referral system strictly capped at a maximum of 100 EGP per 10% reward.</p>
+                        <div class="tags">
+                            <span>Django</span> <span>Flutter</span> <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                    <a href="https://theme-pipes-flat-entrance.trycloudflare.com/ar/" class="project-link">View Project &#8594;</a>
+                </div>
+
+                <!-- Project 3: Al-Khimiayi -->
+                <div class="card glass-panel">
+                    <div>
+                        <h4>Al-Khimiayi EMS</h4>
+                        <p>An Educational Center Management System tailored for seamless administrative operations. Includes student QR code identification, automated exam grading modules, and comprehensive financial reporting.</p>
+                        <div class="tags">
+                            <span>Django DRF</span> <span>Python</span> <span>JS</span>
+                        </div>
+                    </div>
+                    <a href="https://man9000442-hub.github.io/EL-5emya2e/" class="project-link">View Project &#8594;</a>
+                </div>
+
+
+                <div class="card glass-panel">
+                    <div>
+                        <h4>PhoneZone Store & Admin</h4>
+                        <p>A full-stack e-commerce platform for mobile phones. Features a responsive customer storefront with dynamic filtering and WhatsApp order integration. Includes a secure admin dashboard powered by Supabase for real-time inventory
+                            management, CRUD operations, and cloud image storage.</p>
+                        <div class="tags">
+                            <span>Vanilla JS</span> <span>Supabase</span> <span>PostgreSQL</span> <span>CSS3</span>
+                        </div>
+                    </div>
+                    <a href="https://phon-zone.netlify.app/" class="project-link">View Project &#8594;</a>
+                </div>
+
+                <!-- Project 4: Neva AI -->
+                <div class="card glass-panel">
+                    <div>
+                        <h4>Neva AI Agent</h4>
+                        <p>A custom conversational AI assistant designed with a distinct persona. Capable of communicating in Egyptian slang, retaining contextual memory, and executing local tasks through a mobile interface.</p>
+                        <div class="tags">
+                            <span>Python</span> <span>AI/NLP</span> <span>Flutter</span>
+                        </div>
+                    </div>
+                    <!-- <a href="#" class="project-link">View Project &#8594;</a> -->
+                </div>
+
+                <!-- Project 5: Network App -->
+                <div class="card glass-panel">
+                    <div>
+                        <h4>Home Network Manager</h4>
+                        <p>An Android application conceptualized for local network monitoring. Connects to ZTE/Orange routers to track real-time internet consumption per connected device and remotely control configurations.</p>
+                        <div class="tags">
+                            <span>Android</span> <span>Flutter</span> <span>Networking</span>
+                        </div>
+                    </div>
+                    <!-- <a href="#" class="project-link">View Project &#8594;</a> -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="glass-panel">
+            <p>Designed and developed by <a href="YOUR_INSTAGRAM_LINK_HERE" target="_blank">Abdelrahman Tarek</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>

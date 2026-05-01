@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Dashboard</h1>
+            <nav>
+                <a href="/">View Site</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </header>
+
+        <div class="admin-form">
+            <h3 style="margin-bottom: 30px; font-weight: 300;">Update Profile & Projects</h3>
+
+            <!-- دي فورم تجريبية هتربطها بـ Django -->
+            <form action="/update-profile" method="POST" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label>Profile Image</label>
+                    <input type="file" name="profile_image">
+                </div>
+
+                <div class="form-group">
+                    <label>Job Title / Headline</label>
+                    <input type="text" name="headline" value="Full Stack Software Engineer | Django & Flutter Specialist">
+                </div>
+
+                <div class="form-group">
+                    <label>Bio / About Me</label>
+                    <textarea name="bio" rows="5">Building scalable, high-performance web and mobile applications...</textarea>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+                <h4 style="margin-bottom: 20px; color: var(--accent-color);">Add New Project</h4>
+
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <input type="text" name="project_title" placeholder="e.g., Network Manager App">
+                </div>
+
+                <div class="form-group">
+                    <label>Project Description & Features</label>
+                    <textarea name="project_desc" rows="4" placeholder="Brief description of the project and its core features..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Technologies Used (Comma separated)</label>
+                    <input type="text" name="tech_stack" placeholder="Django, Flutter, PostgreSQL">
+                </div>
+
+                <button type="submit" class="btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>Designed and developed by <a href="YOUR_INSTAGRAM_LINK" target="_blank">Abdelrahman Tarek</a></p>
+    </footer>
+</body>
+
+</html>
