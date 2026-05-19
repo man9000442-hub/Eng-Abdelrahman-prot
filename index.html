@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdelrahman Tarek | Software Engineer</title>
-    <!-- استدعاء خطوط Google و FontAwesome للأيقونات -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+    <!-- استدعاء خطوط Google و FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Cairo:wght@400;600;800;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* المتغيرات والأساسيات - أبيض وأسود، حواف حادة */
+        /* المتغيرات والأساسيات */
         :root {
             --bg-color: #ffffff;
             --text-main: #000000;
@@ -25,16 +25,25 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-            border-radius: 0 !important; /* إلغاء أي انحناءات للحصول على حواف حادة */
+            border-radius: 0 !important;
         }
 
+        /* دعم الخطوط حسب اللغة */
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
         }
+        
+        html[lang="ar"] body {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* نظام التبديل بين اللغات */
+        html[lang="en"] .ar { display: none !important; }
+        html[lang="ar"] .en { display: none !important; }
 
         /* ---------------- شاشة التحميل ---------------- */
         #loader {
@@ -67,7 +76,7 @@
             height: 100%;
             border: 1px solid #e0e0e0;
             border-top: 2px solid #000000;
-            border-radius: 50% !important; /* الاستثناء الوحيد للدائرة */
+            border-radius: 50% !important;
             animation: spin 1s linear infinite;
         }
 
@@ -84,7 +93,6 @@
             font-weight: 800;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #000000;
         }
 
         @keyframes spin {
@@ -118,7 +126,7 @@
         .nav-group {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
         }
 
         nav a {
@@ -128,6 +136,7 @@
             font-size: 0.95rem;
             text-transform: uppercase;
             transition: var(--transition);
+            margin: 0 10px;
         }
 
         nav a:hover {
@@ -149,7 +158,7 @@
             box-shadow: 4px 4px 0px var(--border-color);
             transition: var(--transition);
             background: #fff;
-            margin-left: 10px;
+            margin: 0 5px;
         }
 
         .social-icons a:hover {
@@ -208,6 +217,7 @@
             text-transform: uppercase;
             box-shadow: var(--shadow-elegant);
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -215,6 +225,12 @@
             box-shadow: 4px 4px 0px var(--border-color);
             background: var(--text-main);
             color: var(--bg-color);
+        }
+        
+        .lang-btn {
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            box-shadow: 4px 4px 0px var(--border-color);
         }
 
         .img-wrapper {
@@ -229,11 +245,11 @@
             overflow: hidden;
         }
 
+        /* تم إزالة الفلتر الأبيض والأسود لتظهر الألوان الطبيعية */
         .img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(120%); /* تأثير الأبيض والأسود للصورة */
         }
 
         .img-placeholder-text {
@@ -259,14 +275,14 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
         }
 
         .card {
             background: var(--bg-color);
             border: 3px solid var(--border-color);
-            padding: 40px 30px;
+            padding: 30px;
             box-shadow: var(--shadow-elegant);
             display: flex;
             flex-direction: column;
@@ -280,24 +296,41 @@
         }
 
         .card h4 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 900;
             margin-bottom: 15px;
             text-transform: uppercase;
         }
 
-        .card p {
+        .card > div > p {
             color: var(--text-secondary);
             font-size: 0.95rem;
             font-weight: 600;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             line-height: 1.7;
-            flex-grow: 1;
+        }
+
+        /* تفاصيل المشاريع المخفية */
+        .project-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed var(--border-color);
+        }
+
+        .card.show-details .project-details {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card ul {
             list-style: none;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .card ul li {
@@ -309,6 +342,11 @@
             position: relative;
         }
 
+        html[dir="rtl"] .card ul li {
+            padding-left: 0;
+            padding-right: 15px;
+        }
+
         .card ul li::before {
             content: "-";
             position: absolute;
@@ -317,42 +355,49 @@
             color: var(--text-main);
         }
 
+        html[dir="rtl"] .card ul li::before {
+            left: auto;
+            right: 0;
+        }
+
         .tags {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .tags span {
-            font-size: 0.75rem;
+            font-size: 0.70rem;
             font-weight: 800;
             background: var(--text-main);
             color: var(--bg-color);
-            padding: 6px 12px;
+            padding: 5px 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .project-link {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 900;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-transform: uppercase;
-            align-self: flex-start;
-            border-bottom: 3px solid transparent;
-            padding-bottom: 2px;
-            transition: var(--transition);
+        /* أزرار الكروت */
+        .card-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
         }
 
-        .project-link:hover {
-            border-bottom-color: var(--text-main);
-            gap: 15px;
+        .btn-small {
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            flex: 1;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
         }
+
+        .card.show-details .text-show { display: none; }
+        .card:not(.show-details) .text-hide { display: none; }
 
         /* Footer */
         footer {
@@ -368,17 +413,6 @@
             text-transform: uppercase;
         }
 
-        footer a {
-            color: var(--text-main);
-            text-decoration: none;
-            border-bottom: 2px solid var(--text-main);
-        }
-
-        footer a:hover {
-            background: var(--text-main);
-            color: var(--bg-color);
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             header {
@@ -387,7 +421,7 @@
             }
             .hero {
                 flex-direction: column-reverse;
-                text-align: left;
+                text-align: center;
                 gap: 40px;
             }
             .hero-content {
@@ -404,6 +438,9 @@
                 flex-direction: column;
                 gap: 20px;
             }
+            .card-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -415,7 +452,10 @@
             <div class="spinner"></div>
             <div class="code-brackets">{ }</div>
         </div>
-        <div class="loader-text">Software Engineer Abdelrahman</div>
+        <div class="loader-text">
+            <span class="en">Software Engineer Abdelrahman</span>
+            <span class="ar">مهندس البرمجيات عبدالرحمن</span>
+        </div>
     </div>
 
     <div class="container">
@@ -424,151 +464,387 @@
             <h1>AT.</h1>
             <div class="nav-group">
                 <nav>
-                    <a href="#about">About</a>
-                    <a href="#projects" style="margin-left: 20px;">Projects</a>
+                    <a href="#about">
+                        <span class="en">About</span>
+                        <span class="ar">عني</span>
+                    </a>
+                    <a href="#projects">
+                        <span class="en">Projects</span>
+                        <span class="ar">المشاريع</span>
+                    </a>
                 </nav>
                 <div class="social-icons">
                     <a href="https://wa.me/201094724932" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     <a href="https://www.instagram.com/theboda_?igsh=MTZjMGp5cWk3d3B1ag==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
+                <!-- زر تبديل اللغة -->
+                <button class="btn lang-btn" onclick="toggleLanguage()">
+                    <span class="en"><i class="fas fa-globe"></i> العربية</span>
+                    <span class="ar"><i class="fas fa-globe"></i> English</span>
+                </button>
             </div>
         </header>
 
         <!-- Hero Section -->
         <section class="hero" id="about">
             <div class="hero-content">
-                <h2>Abdelrahman<br>Tarek</h2>
-                <h3>Full Stack Software Engineer & Architect</h3>
-                <p>Specializing in Django, Flutter, and modern web technologies. I build scalable architectures, intuitive mobile applications, and sophisticated internal tools with a focus on clean code and exceptional user experience.</p>
-                <a href="#projects" class="btn">View My Work</a>
+                <h2>
+                    <span class="en">Abdelrahman<br>Tarek</span>
+                    <span class="ar">عبدالرحمن<br>طارق</span>
+                </h2>
+                <h3>
+                    <span class="en">Full Stack Software Engineer & Architect</span>
+                    <span class="ar">مهندس ومصمم برمجيات متكاملة (Full Stack)</span>
+                </h3>
+                <p>
+                    <span class="en">Specializing in Django, Flutter, and modern web technologies. I build scalable architectures, intuitive mobile applications, and sophisticated internal tools with a focus on clean code and exceptional user experience.</span>
+                    <span class="ar">متخصص في تقنيات Django و Flutter وويب الحديث. أقوم ببناء أنظمة قابلة للتوسع، وتطبيقات هواتف ذكية سلسة، وأنظمة إدارة داخلية متطورة مع التركيز على الكود النظيف وتجربة المستخدم المتميزة.</span>
+                </p>
+                <a href="#projects" class="btn">
+                    <span class="en">View My Work</span>
+                    <span class="ar">استعرض أعمالي</span>
+                </a>
             </div>
 
-            <!-- مكان صورتك الشخصية -->
             <div class="img-wrapper">
-                <!-- أضف مسار صورتك هنا. الصورة ستتحول للأبيض والأسود تلقائياً عبر الـ CSS -->
-                <!-- <img src="your-image.jpg" alt="Abdelrahman Tarek"> -->
+                <!-- أضف مسار صورتك هنا -->
                 <span class="img-placeholder-text"><img src="your-image.jpg" alt="Abdelrahman Tarek"></span>
             </div>
         </section>
 
         <!-- Projects Section -->
         <section class="projects" id="projects">
-            <h3 class="projects-header">Featured Projects</h3>
+            <h3 class="projects-header">
+                <span class="en">Featured Projects</span>
+                <span class="ar">أبرز المشاريع</span>
+            </h3>
+            
             <div class="grid">
 
-                <!-- Noveyra Project Card -->
+                <!-- 1. Kenzy Academy (المشروع الجديد) -->
                 <div class="card">
                     <div>
-                        <h4>Noveyra | Software Solutions Platform</h4>
-                        <p>The official platform for Noveyra Software Solutions, engineered to deliver technical services and manage projects with a modern vision.</p>
-                        <ul>
-                            <li><strong>Dynamic Content Management:</strong> Admin dashboard via Supabase.</li>
-                            <li><strong>Serverless Architecture:</strong> Ultra-fast response via PostgreSQL.</li>
-                            <li><strong>Intelligent Communication:</strong> WhatsApp API integration.</li>
-                            <li><strong>High-Performance:</strong> Built with Vanilla JavaScript.</li>
-                        </ul>
-                        <div class="tags">
-                            <span>Software House UI</span> <span>Supabase Auth</span> <span>PostgreSQL</span> <span>Custom CRM</span>
+                        <h4>
+                            <span class="en">Kenzy Academy | Student Portal</span>
+                            <span class="ar">أكاديمية كنزي | بوابة الطالب</span>
+                        </h4>
+                        <p>
+                            <span class="en">An educational platform featuring an advanced exam portal, secure video lecture library, and an automated QR code generation system for student results.</span>
+                            <span class="ar">منصة تعليمية متكاملة تضم بوابة اختبارات، مكتبة محاضرات فيديو محمية، ونظام توليد أكواد QR ذكية لنتائج الطلاب.</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <ul>
+                                <li>
+                                    <span class="en"><strong>Custom Video Player:</strong> Integrated YouTube player with double-tap seek, custom controls, and secure fullscreen modes.</span>
+                                    <span class="ar"><strong>مشغل فيديو مخصص:</strong> مشغل يوتيوب متقدم يدعم النقر المزدوج للتقديم والتأخير، وشاشة كاملة صلبة للموبايل.</span>
+                                </li>
+                                <li>
+                                    <span class="en"><strong>Exam Engine:</strong> Dynamic quizzes mapped to Supabase backend with instant grading.</span>
+                                    <span class="ar"><strong>نظام الاختبارات:</strong> امتحانات ديناميكية متصلة بقواعد بيانات Supabase مع تصحيح فوري.</span>
+                                </li>
+                                <li>
+                                    <span class="en"><strong>Secure Results:</strong> AES encrypted QR codes generation for offline verification.</span>
+                                    <span class="ar"><strong>نتائج مشفرة:</strong> توليد أكواد QR مشفرة بتشفير AES للتحقق الآمن من النتائج.</span>
+                                </li>
+                            </ul>
+                            <div class="tags">
+                                <span>HTML5 / Tailwind</span> <span>JS</span> <span>Supabase</span> <span>CryptoJS</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="https://noveyra.vercel.app/" target="_blank" class="project-link">Visit Noveyra <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- A7 Media Vault -->
-                <div class="card">
-                    <div>
-                        <h4>A7 Media Vault | Advanced Player</h4>
-                        <p>A high-performance music streaming application, engineered with a custom native bridge to deliver seamless media playback directly from YouTube.</p>
-                        <ul>
-                            <li><strong>Custom Native Engine:</strong> Kotlin bridge for ExoPlayer.</li>
-                            <li><strong>Direct Extraction:</strong> Real-time fetching of highest-bitrate streams.</li>
-                            <li><strong>Background Services:</strong> Native Android background audio.</li>
-                        </ul>
-                        <div class="tags">
-                            <span>Flutter</span> <span>Kotlin</span> <span>ExoPlayer</span> <span>Streaming</span>
-                        </div>
-                    </div>
-                    <a href="https://man9000442-hub.github.io/A7-MEDIA-DOWNLOAD/" target="_blank" class="project-link">View Repository <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- WhatsApp Archive -->
-                <div class="card">
-                    <div>
-                        <h4>WhatsApp Chat Archive</h4>
-                        <p>A professional client-side tool built to parse, search, and archive exported WhatsApp (.txt) conversations. Features advanced date filtering and export-to-PDF.</p>
-                        <div class="tags">
-                            <span>HTML5</span> <span>CSS3</span> <span>JavaScript</span> <span>html2pdf.js</span>
-                        </div>
-                    </div>
-                    <a href="https://man9000442-hub.github.io/Wa_Imoprt/" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Elbazaar -->
-                <div class="card">
-                    <div>
-                        <h4>Market Place</h4>
-                        <p>A multi-store E-commerce platform. Features an advanced merchant dashboard, secure payment integrations (Paymob), and a referral system strictly capped.</p>
-                        <div class="tags">
-                            <span>Django</span> <span>Flutter</span> <span>PostgreSQL</span>
-                        </div>
-                    </div>
-                    <a href="https://theme-pipes-flat-entrance.trycloudflare.com/ar/" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Ta3alm Educational Platform -->
-                <div class="card">
-                    <div>
-                        <h4>Ta3alm Educational Platform</h4>
-                        <p>A comprehensive Learning Management System (LMS) designed for tutoring. Features secure HLS video streaming, automated correction, and Paymob gateway.</p>
-                        <div class="tags">
-                            <span>Django</span> <span>PostgreSQL</span> <span>Supabase</span> <span>Paymob</span>
-                        </div>
-                    </div>
-                    <a href="https://www.ta3alm.online" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Al-Khimiayi -->
-                <div class="card">
-                    <div>
-                        <h4>Al-Khimiayi EMS</h4>
-                        <p>An Educational Center Management System tailored for seamless administrative operations. Includes student QR code identification and automated grading.</p>
-                        <div class="tags">
-                            <span>Django DRF</span> <span>Python</span> <span>JS</span>
-                        </div>
-                    </div>
-                    <a href="https://man9000442-hub.github.io/EL-5emya2e/" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- PhoneZone Store -->
-                <div class="card">
-                    <div>
-                        <h4>PhoneZone Store & Admin</h4>
-                        <p>A full-stack e-commerce platform for mobile phones. Features a responsive storefront with WhatsApp order integration and a Supabase admin dashboard.</p>
-                        <div class="tags">
-                            <span>Vanilla JS</span> <span>Supabase</span> <span>PostgreSQL</span> <span>CSS3</span>
-                        </div>
-                    </div>
-                    <a href="https://phon-zone.netlify.app/" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Neva AI -->
-                <div class="card">
-                    <div>
-                        <h4>Neva AI Agent</h4>
-                        <p>A custom conversational AI assistant designed with a distinct persona. Capable of communicating in Egyptian slang, retaining contextual memory, and executing tasks.</p>
-                        <div class="tags">
-                            <span>Python</span> <span>AI/NLP</span> <span>Flutter</span>
-                        </div>
+                    
+                    <div class="card-actions">
+                        <button class="btn btn-small toggle-details-btn" onclick="this.closest('.card').classList.toggle('show-details')">
+                            <span class="text-show">
+                                <span class="en">Details <i class="fas fa-chevron-down"></i></span>
+                                <span class="ar">التفاصيل <i class="fas fa-chevron-down"></i></span>
+                            </span>
+                            <span class="text-hide">
+                                <span class="en">Hide <i class="fas fa-chevron-up"></i></span>
+                                <span class="ar">إخفاء <i class="fas fa-chevron-up"></i></span>
+                            </span>
+                        </button>
+                        <a href="https://man9000442-hub.github.io/KenzyAcaadmy/" target="_blank" class="btn btn-small">
+                            <span class="en">Go to Project <i class="fas fa-arrow-right"></i></span>
+                            <span class="ar">للمشروع <i class="fas fa-arrow-left"></i></span>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Network App -->
+                <!-- 2. Noveyra Project -->
                 <div class="card">
                     <div>
-                        <h4>Home Network Manager</h4>
-                        <p>An Android application conceptualized for local network monitoring. Connects to ZTE/Orange routers to track real-time internet consumption and control configurations.</p>
-                        <div class="tags">
-                            <span>Android</span> <span>Flutter</span> <span>Networking</span>
+                        <h4>
+                            <span class="en">Noveyra | Software Solutions</span>
+                            <span class="ar">نوفييرا | للحلول البرمجية</span>
+                        </h4>
+                        <p>
+                            <span class="en">The official platform for Noveyra Software Solutions, engineered to deliver technical services and manage projects.</span>
+                            <span class="ar">المنصة الرسمية لشركة نوفييرا للحلول البرمجية، مصممة لتقديم الخدمات التقنية وإدارة المشاريع برؤية حديثة.</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <ul>
+                                <li>
+                                    <span class="en"><strong>Dynamic CMS:</strong> Admin dashboard via Supabase.</span>
+                                    <span class="ar"><strong>إدارة المحتوى:</strong> لوحة تحكم متكاملة عبر Supabase.</span>
+                                </li>
+                                <li>
+                                    <span class="en"><strong>Serverless Architecture:</strong> Ultra-fast response via PostgreSQL.</span>
+                                    <span class="ar"><strong>بنية سيرفرليس:</strong> استجابة فائقة السرعة بفضل PostgreSQL.</span>
+                                </li>
+                                <li>
+                                    <span class="en"><strong>Intelligent Communication:</strong> WhatsApp API integration.</span>
+                                    <span class="ar"><strong>تواصل ذكي:</strong> دمج متقدم مع واجهات واتساب.</span>
+                                </li>
+                            </ul>
+                            <div class="tags">
+                                <span>Software House</span> <span>Supabase</span> <span>PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-actions">
+                        <button class="btn btn-small toggle-details-btn" onclick="this.closest('.card').classList.toggle('show-details')">
+                            <span class="text-show">
+                                <span class="en">Details <i class="fas fa-chevron-down"></i></span>
+                                <span class="ar">التفاصيل <i class="fas fa-chevron-down"></i></span>
+                            </span>
+                            <span class="text-hide">
+                                <span class="en">Hide <i class="fas fa-chevron-up"></i></span>
+                                <span class="ar">إخفاء <i class="fas fa-chevron-up"></i></span>
+                            </span>
+                        </button>
+                        <a href="https://noveyra.vercel.app/" target="_blank" class="btn btn-small">
+                            <span class="en">Go to Project <i class="fas fa-arrow-right"></i></span>
+                            <span class="ar">للمشروع <i class="fas fa-arrow-left"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. A7 Media Vault -->
+                <div class="card">
+                    <div>
+                        <h4>
+                            <span class="en">A7 Media Vault</span>
+                            <span class="ar">مشغل ميديا A7 المتقدم</span>
+                        </h4>
+                        <p>
+                            <span class="en">A high-performance music streaming application, engineered with a custom native bridge to deliver seamless media playback.</span>
+                            <span class="ar">تطبيق عالي الأداء لبث الصوتيات، مبرمج بجسر برمجي مخصص لتشغيل الوسائط مباشرة وسلاسة من يوتيوب.</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <ul>
+                                <li>
+                                    <span class="en"><strong>Custom Native Engine:</strong> Kotlin bridge for ExoPlayer.</span>
+                                    <span class="ar"><strong>محرك مخصص:</strong> جسر بلغة Kotlin لبرنامج ExoPlayer.</span>
+                                </li>
+                                <li>
+                                    <span class="en"><strong>Direct Extraction:</strong> Real-time fetching of highest-bitrate streams.</span>
+                                    <span class="ar"><strong>استخراج مباشر:</strong> جلب للروابط بأعلى جودة في الوقت الفعلي.</span>
+                                </li>
+                                <li>
+                                    <span class="en"><strong>Background Services:</strong> Native Android background audio.</span>
+                                    <span class="ar"><strong>خدمات الخلفية:</strong> تشغيل الصوت في الخلفية لنظام أندرويد.</span>
+                                </li>
+                            </ul>
+                            <div class="tags">
+                                <span>Flutter</span> <span>Kotlin</span> <span>ExoPlayer</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-actions">
+                        <button class="btn btn-small toggle-details-btn" onclick="this.closest('.card').classList.toggle('show-details')">
+                            <span class="text-show">
+                                <span class="en">Details <i class="fas fa-chevron-down"></i></span>
+                                <span class="ar">التفاصيل <i class="fas fa-chevron-down"></i></span>
+                            </span>
+                            <span class="text-hide">
+                                <span class="en">Hide <i class="fas fa-chevron-up"></i></span>
+                                <span class="ar">إخفاء <i class="fas fa-chevron-up"></i></span>
+                            </span>
+                        </button>
+                        <a href="https://man9000442-hub.github.io/A7-MEDIA-DOWNLOAD/" target="_blank" class="btn btn-small">
+                            <span class="en">Go to Project <i class="fas fa-arrow-right"></i></span>
+                            <span class="ar">للمشروع <i class="fas fa-arrow-left"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. WhatsApp Archive -->
+                <div class="card">
+                    <div>
+                        <h4>
+                            <span class="en">WhatsApp Chat Archive</span>
+                            <span class="ar">أرشيف محادثات واتساب</span>
+                        </h4>
+                        <p>
+                            <span class="en">A professional client-side tool built to parse, search, and archive exported WhatsApp (.txt) conversations.</span>
+                            <span class="ar">أداة احترافية لتحليل والبحث وأرشفة محادثات واتساب المصدرة بصيغة (.txt).</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="tags mt-2">
+                                <span>HTML5</span> <span>JS</span> <span>html2pdf.js</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-actions">
+                        <a href="https://man9000442-hub.github.io/Wa_Imoprt/" target="_blank" class="btn btn-small" style="width:100%">
+                            <span class="en">Go to Project <i class="fas fa-arrow-right"></i></span>
+                            <span class="ar">للمشروع <i class="fas fa-arrow-left"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. Elbazaar -->
+                <div class="card">
+                    <div>
+                        <h4>
+                            <span class="en">Market Place Platform</span>
+                            <span class="ar">منصة ماركت بليس</span>
+                        </h4>
+                        <p>
+                            <span class="en">A multi-store E-commerce platform. Features an advanced merchant dashboard and secure payment integrations.</span>
+                            <span class="ar">منصة تجارة إلكترونية متعددة المتاجر. تتميز بلوحة تحكم متقدمة للتجار وبوابات دفع إلكترونية.</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="tags mt-2">
+                                <span>Django</span> <span>Flutter</span> <span>PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-actions">
+                        <a href="https://theme-pipes-flat-entrance.trycloudflare.com/ar/" target="_blank" class="btn btn-small" style="width:100%">
+                            <span class="en">Go to Project <i class="fas fa-arrow-right"></i></span>
+                            <span class="ar">للمشروع <i class="fas fa-arrow-left"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 6. Ta3alm Educational Platform -->
+                <div class="card">
+                    <div>
+                        <h4>
+                            <span class="en">Ta3alm Educational Platform</span>
+                            <span class="ar">منصة تَعَلَّم التعليمية</span>
+                        </h4>
+                        <p>
+                            <span class="en">A comprehensive Learning Management System (LMS) designed for tutoring with secure HLS video streaming.</span>
+                            <span class="ar">نظام إدارة تعلم (LMS) متكامل مصمم للمدرسين مع بث آمن للفيديوهات بتقنية HLS وتصحيح آلي.</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="tags mt-2">
+                                <span>Django</span> <span>PostgreSQL</span> <span>Paymob</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-actions">
+                        <a href="https://www.ta3alm.online" target="_blank" class="btn btn-small" style="width:100%">
+                            <span class="en">Go to Project <i class="fas fa-arrow-right"></i></span>
+                            <span class="ar">للمشروع <i class="fas fa-arrow-left"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 7. Al-Khimiayi EMS -->
+                <div class="card">
+                    <div>
+                        <h4>
+                            <span class="en">Al-Khimiayi EMS</span>
+                            <span class="ar">نظام إدارة الكيميائي</span>
+                        </h4>
+                        <p>
+                            <span class="en">An Educational Center Management System tailored for seamless administrative operations and student QR code tracking.</span>
+                            <span class="ar">نظام مخصص لإدارة المراكز التعليمية لتسهيل العمليات الإدارية وتتبع الطلاب عبر مسح أكواد QR.</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="tags mt-2">
+                                <span>Django DRF</span> <span>Python</span> <span>JS</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-actions">
+                        <a href="https://man9000442-hub.github.io/EL-5emya2e/" target="_blank" class="btn btn-small" style="width:100%">
+                            <span class="en">Go to Project <i class="fas fa-arrow-right"></i></span>
+                            <span class="ar">للمشروع <i class="fas fa-arrow-left"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 8. PhoneZone Store -->
+                <div class="card">
+                    <div>
+                        <h4>
+                            <span class="en">PhoneZone Store</span>
+                            <span class="ar">متجر PhoneZone</span>
+                        </h4>
+                        <p>
+                            <span class="en">A full-stack e-commerce platform for mobile phones. Features WhatsApp order integration and a Supabase dashboard.</span>
+                            <span class="ar">منصة تجارة إلكترونية متكاملة للهواتف. تدعم الطلب عبر واتساب ولوحة تحكم مبنية بـ Supabase.</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="tags mt-2">
+                                <span>Vanilla JS</span> <span>Supabase</span> <span>PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-actions">
+                        <a href="https://phon-zone.netlify.app/" target="_blank" class="btn btn-small" style="width:100%">
+                            <span class="en">Go to Project <i class="fas fa-arrow-right"></i></span>
+                            <span class="ar">للمشروع <i class="fas fa-arrow-left"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 9. Neva AI -->
+                <div class="card">
+                    <div>
+                        <h4>
+                            <span class="en">Neva AI Agent</span>
+                            <span class="ar">مساعد الذكاء الاصطناعي Neva</span>
+                        </h4>
+                        <p>
+                            <span class="en">A custom conversational AI assistant designed with a distinct persona. Capable of communicating in Egyptian slang.</span>
+                            <span class="ar">مساعد ذكاء اصطناعي تفاعلي مبرمج بشخصية مستقلة، قادر على التواصل باللهجة المصرية والاحتفاظ بالذاكرة.</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="tags mt-2">
+                                <span>Python</span> <span>AI/NLP</span> <span>Flutter</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Network App -->
+                <div class="card">
+                    <div>
+                        <h4>
+                            <span class="en">Home Network Manager</span>
+                            <span class="ar">مدير الشبكة المنزلية</span>
+                        </h4>
+                        <p>
+                            <span class="en">An Android application conceptualized for local network monitoring. Connects to ZTE/Orange routers.</span>
+                            <span class="ar">تطبيق أندرويد مصمم لمراقبة الشبكة المحلية واستهلاك الإنترنت بالاتصال المباشر براوترات ZTE/Orange.</span>
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="tags mt-2">
+                                <span>Android</span> <span>Flutter</span> <span>Networking</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -578,19 +854,31 @@
 
         <!-- Footer -->
         <footer>
-            <p>Designed and developed by Abdelrahman </p>
+            <p>
+                <span class="en">Designed and developed by Abdelrahman</span>
+                <span class="ar">تم التصميم والتطوير بواسطة عبدالرحمن</span>
+            </p>
         </footer>
     </div>
 
-    <!-- كود إخفاء شاشة التحميل بعد تحميل الصفحة -->
     <script>
+        // دالة تبديل اللغة
+        function toggleLanguage() {
+            const htmlTag = document.documentElement;
+            if (htmlTag.lang === 'en') {
+                htmlTag.lang = 'ar';
+                htmlTag.dir = 'rtl';
+            } else {
+                htmlTag.lang = 'en';
+                htmlTag.dir = 'ltr';
+            }
+        }
+
+        // كود إخفاء شاشة التحميل بعد تحميل الصفحة
         window.addEventListener('load', function() {
-            // إضافة تأخير بسيط (1.5 ثانية) لضمان رؤية شاشة التحميل بشكل أنيق
             setTimeout(function() {
                 const loader = document.getElementById('loader');
                 loader.style.opacity = '0';
-                
-                // إزالة العنصر من الـ DOM بعد انتهاء تأثير الشفافية
                 setTimeout(function() {
                     loader.style.display = 'none';
                 }, 500); 
